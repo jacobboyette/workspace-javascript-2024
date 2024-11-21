@@ -25,13 +25,15 @@
                 <script>
                     document.title = "JavaScript Basic -- In class practice -- Yilian Zhang";
                     // use document.write to display a message
-                    
+                    document.write("<p>Hello!.</p>");
                     // use console.log to display a message   
-                  
+                  console.log("This is for debugging. ");
                     
                 </script>
             </p>
             <p> Please import external file hello.js here. 
+                <script src="js/hello.js">
+                </script>
                 
             </p>
         </div>
@@ -39,15 +41,50 @@
         <div class="practice">
             <h1> Variable and Arithemetic Operation</h1>
             <p> Practice on variables </p>
+            <script>
+                var a = parseInt ("5");
+                var b = parseInt ("10");
+                var c = parseInt (a + b);
+                var d = parseInt (a - b);
+                var e = parseInt (c % b);
+                var f = parseInt (b * a);
+                var g = parseInt (c / d);
+                document.write("<p> a + b = "+c+"</p>");
+                document.write("<p> a - b = "+d+"</p>");
+                document.write("<p> c % b = "+e+"</p>");
+                document.write("<p> b * a = "+f+"</p>");
+                document.write("<p> c / d = "+g+"</p>");
+
+            </script>
+            <script>
+                var x ="5.6";
+                var z = 5.7;
+                console.log(typeof x)
+
+                const message = "great";
+                let greeting = "Hi";
+                if(true){
+                    let greeting = "Ok";
+                }
+                console.log(greeting)
+    </script>
 
 
         </div>
 
         <div class="practice">
             <h1> JavaScript Escape Sequence</h1>
-            <p> Write an image to the page </p>
+            <p> Write an image to the page
+                <script>
+                    document.write("<img src=\"img/die1.png\">");
+                </script>    
+            </p>
 
-            <p> Write a table to the page </p>
+            <p> Write a table to the page 
+                <script>
+                    document.write("<table border=\"1\"> <tr></tr> </table>");
+                </script>
+            </p>
 
         </div>
 
@@ -55,7 +92,11 @@
             <h1>Window and Document Object </h1>
             <p> Try alert, open, location, url </p>
             <script>
+               /* window.alert("Pop up alert windows");
+                alert("Another alert");
+                window.location.assign("www.google.com"); */
 
+               // window.open("www.youtube.com");
             </script>
 
         </div>
@@ -74,9 +115,17 @@
             <p id="p1"> Paragraph Number One </p>
             <p id="p2"> Paragraph Number two </p>
             <p id="p3"> Paragraph Number three </p>
-            <p>Please write JavaScript code to change the content of each paragraph.​
-            <p>
+            <p>Please write JavaScript code to change the content of each paragraph.​</p>
+            <script>
+                // change the first paragraph
+                const pOne=document.getElementById("p1");
+                pOne.textContent="I changed.";
+                const pThree=document.getElementById("p3");
+                pThree.innerHTML="<b> Bold Elements</b>";
+                const pTwo=document.getElementById("p2");
+                pTwo.innerHTML="<img src=\"img/superhero.jpg\" width=\"30%\" height=\"30%\">";
 
+            </script>
 
         </div>
 
@@ -85,8 +134,15 @@
             <p> Please enter your numbers </p>
             <script>
                 function calculate() {
+                    const input1=document.getElementsByName('num1')[0];
 
+                    const input2=document.getElementsByName('num2')[0];
 
+                    var a=parseFloat(input1.value);
+                    var b=parseFloat(input2.value);
+                    var c=a+b;
+                    const resultL=document.getElementById("result");
+                    resultL.textContent=" "+ c;
                 }
             </script>
             <p> <input type="text" name="num1" /> + <input type="text" name="num2">
@@ -105,8 +161,8 @@
                     </label>
                 </p>
 
-                <p id="message">
-
+                <p id="checkmessage">
+                    
                 </p>
 
                 <p>
@@ -115,14 +171,47 @@
                     </label>
                 </p>
             </form>
+            <script>
+                // Event Handler
+                function welcome(){
+                   // alert("Thank you! ")
+                   const namebox=document.getElementById('cName');
+                   var newmessage="Welcome "+namebox.value+", you are a new customer!"
+                   document.getElementById('checkmessage').textContent=newmessage;
+
+                }
+                // Binding -- Register the event
+                const nameE=document.getElementById('cName');
+                nameE.addEventListener('blur', welcome);
+
+
+            </script>
 
         </div>
 
         <div class="practice">
             <h1> Practice - Calculate Square</h1>
             Calculating Square:
-            <input type="text" id="num" placeholder="Type in a number"> <sup> 2 </sup> =
-            <label id="result"> ? </label>
+            <input type="text" id="squarenum" placeholder="Type in a number"> <sup> 2 </sup> =
+            <label id="squareresult"> ? </label>
+            <script>
+
+                function dosquare(){
+                // get the number
+                const squareE=document.getElementById("squarenum");
+                var number=parseInt(squareE.value);
+                console.log("The number is "+ number);
+                // do square
+                var newnum=number*number;
+                //put it back to the page
+                document.getElementById("squareresult").textContent=" "+newnum;
+
+                }
+
+                const squareE=document.getElementById("squarenum");
+                squareE.addEventListener('blur', dosquare);
+
+            </script>
 
         </div>
 
@@ -136,8 +225,22 @@
 
             <input type="button" id="tryit" value="Click and Display"> 
 
-            <div id="message"> 
+            <div id="htmlcode"> 
             </div>
+            <script>
+                function convertHTML(){
+                    const codeE=document.getElementById('code');
+                    const htmlcodeE=document.getElementById('htmlcode');
+
+                    htmlcodeE.innerHTML=codeE.textContent;
+
+                }
+
+                document.getElementById('tryit').addEventListener('click', convertHTML);
+
+
+
+            </script>
 
 
         </div>
@@ -353,7 +456,7 @@
         <div class="practice">
             <h1>Change Attribute -- Rolling a dice </h1>
             <p> <input type="button" id="roll" value="roll" /> </p>
-            <p> <img src="img/die1.png"> </p>
+            <p> <img id="dieimg" src="img/die1.png"> </p>
             <table>
                 <tr>
                     <th>Result</th>
@@ -376,9 +479,30 @@
             </table>
 
             <script>
-                //practice array 
+                /*practice array 
                 const myarray = [1,2,3,4,5,6,7];
-                
+                myarray.forEach(element => console.log(element));
+                myarray.push(8)
+                myarray.push(10)
+                myarray.pop()
+                for (var i in myarray){
+                    console.log(myarray[i]);
+                }
+                */
+
+                var stats = [0,0,0,0,0,0];
+                function rolldice(){
+                    console.log("roll click works")
+                    var imgE = document.querySelector('#dieimg');
+                    var num = Math.floor(Math.random()*6)+1
+                    imgE.setAttribute('src',"img/die"+num+".png");
+                    stats[num-1]++;
+                    document.getElementById('r'+num).textContent = stats[num-1].toString();
+
+                    
+                }
+                //bind the event
+                document.getElementById('roll').addEventListener('click',rolldice);
             </script>
 
         </div>
@@ -402,6 +526,20 @@
                 <img src="img/usca5.jpg" alt="usca">
             </div>
 			<script>
+                var imglist = document.querySelectorAll('.img-container-hide');
+                imglist[0].setAttribute('class','img-container');
+                var index = 0;
+                //event -- change to next picture
+                function changepic(){
+                    imglist[index].setAttribute('class',"img-container-hide")
+                    index++;
+                    imglist[index].setAttribute('class',"img-containter");
+
+                }
+
+                //bind the event
+                setInterval(changepic,3000);
+                imglist[0].addEventListener('click',changepic);
 				
 			</script>
 
